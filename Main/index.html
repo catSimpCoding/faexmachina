@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faex EX Machina</title>
+    <script type="module" src="./index.js"></script>
+</head>
+<body>
+    <h1>FAEX (EX) MACHINA</h1>
+    <h2>A CY_BORG scvm birthing vat</h2>
+
+    <button type="button" id="gearButton" >click me to get G E A R E D  U P!</button>
+    
+    <ul id="gearOutput"></ul>
+    <div id="classSelector">
+      <fieldset>
+      <legend>Class</legend>
+
+       
+ 
+        <div>
+          <input type="radio" id="classless" value="classless" name="class" checked>
+          <label for="classless">Classless</label>
+
+        </div>
+        <div>
+          <input type="radio" id="randomClass" value="Random_class" name="class">
+          <label for="Random_class">Random Class</label>
+
+        </div>
+        <div>
+          <input type="radio" id="selectClass" value="Select_class" name="class">
+          <label for="Select_class">Select Class</label>
+
+        </div>
+      </fieldset>
+    </div>
+    <div id="statSelector">
+        <fieldset>
+            <legend>Select Attributes</legend>
+        
+            <div>
+              <input type="checkbox" id="Agility" name="Agility"> 
+              <label for="Agility">Agility</label>
+            </div>
+        
+            <div>
+              <input type="checkbox" id="Knowledge" name="Knowledge">
+              <label for="Knowledge">Knowledge</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Presence" name="Presence">
+                <label for="Presence">Presence</label>
+              </div>
+              <div>
+                <input type="checkbox" id="Strength" name="Strength">
+                <label for="Strength">Strength</label>
+              </div>
+              <div>
+                <input type="checkbox" id="Toughness" name="Toughness">
+                <label for="Toughness">Toughness</label>
+              </div>
+        </fieldset>
+    </div>
+      <div id="classSelector" hidden>
+          <fieldset>
+            <legend>Select class</legend>
+            <p>Coming soon</p>
+            <div>
+              <input type="radio">
+              <label for="">Coming soon</label>
+            </div>
+          </fieldset>
+
+      </div>
+      <button type="button" id="statRoller" disabled>Roll STATS and may the fickle gods of fortune smile upon you</button>
+
+    </div>
+
+    <div id="classOutput">
+      <ul id="statsOutput"></ul>
+    </div>
+
+    <button id="resetButton">Reset</button hidden>
+</body>
+</html>
