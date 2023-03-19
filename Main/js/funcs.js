@@ -6,13 +6,15 @@ function roll(max) {
  * @param {} table - object or array
  * @returns a random value from table
  */
-export function tableRoller(table, cap = table.length - 1) {
+export function tableRoller(table, cap = table.length) {
     function roll(max) {
-        return Math.floor(Math.random() * max) + 1
+        return Math.floor(Math.random() * max)
     }
-
+    // på något sätt så tar den IBLAND sträng som cap, hur?
     if (Array.isArray(table)) {
-        return table[roll(cap)] 
+        let diceRoll = roll(cap)
+        console.log(diceRoll, cap, table)
+        return table[diceRoll]
     }
 
     else {

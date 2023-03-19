@@ -1,5 +1,5 @@
 import { diceRoller, tableRoller } from "./funcs.js";
-
+import {playerClass,nanomancer,hacker,corpKiller, gearhead, slasher, ganger} from "./classes.js"
 
 export let attributeTable = [
     -3,-3,-3,-3,-3, //1-4 
@@ -73,7 +73,7 @@ export let gearTable3 = {
 8: 'Fake ID. Good enough to pass a random check, might not work if they are looking for you.' ,
 9: 'Visionvisor.Zoom, camera, heat/night vision, ultrasound.' ,
 10: `${tableRoller(cyberTable, 10)}`,
-11: `Cyberdeck with d3 slots and 2 random Apps.` , //roller
+11: `Cyberdeck with ${diceRoller(3)} slots and 2 random Apps.` , //roller
 12: `A random Nano power.` //roller
 }
 
@@ -101,6 +101,13 @@ export let weaponTable = [
     'Sniper Rifle - 2d10, x3 crit damage. If aiming 2 rounds: -4DR +2 DMG'
 ]
 
-// export let classTable = {}
+export let classTable = [
+    new nanomancer(),
+    new hacker(),
+    new corpKiller(),
+    new gearhead(),
+    new slasher(),
+    new ganger()
+]
 
 // export let nanoTable []

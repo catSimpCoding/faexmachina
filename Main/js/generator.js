@@ -1,7 +1,7 @@
 import { diceRoller, tableRoller } from "./funcs.js";
-import { playerClass } from "./classes.js";
-import { attributeTable, weaponTable } from "./tables.js";
-import { gearTable, gearTable2, gearTable3, armorTable } from "./tables.js";
+import { corpKiller, playerClass, slasher } from "./classes.js";
+import { attributeTable, cyberTable, weaponTable } from "./tables.js";
+import { gearTable, gearTable2, gearTable3, armorTable, classTable } from "./tables.js";
 
 //need to read some DOM here
 export function gearGenerator() {
@@ -16,7 +16,7 @@ export function characterGenerator() {
 
 
 
-    if (true) { // check for classless (dom.class)
+    if (document.getElementById("classless").checked == true) { // check for classless (dom.class)
 
         let PC = new playerClass()
         //document.getElementById('Agility').checked gives us if it is checked
@@ -48,7 +48,7 @@ export function characterGenerator() {
             PC.toughness = -4
             PC.glitches = 0
             PC.hp = 1
-            PC.wpn = 'Big book of cheats -d2'
+            PC.wpn = 'Big book of cheats -d2. Cyberglued to hand'
             PC.arm = 'Filthy rags - +2DR to all social interactions'
  
         }
@@ -57,12 +57,97 @@ export function characterGenerator() {
             PC.hp = 1
         }
         
-
         return PC.present()
+        
     }
+    //all the classes can be in an array as follows = [new nanomancer(), new hacker()] etc
+    // PC instance of corpKiller kan användas för att ge +1 på arm roll
+    
+    else {
+        let PC = classSelector()
+        return classGenerator(PC)
+    }
+    
     if (false) { //class
 
 
+        PC.agility = attributeTable[diceRoller(6,3,PC.agility)]
+        PC.knowledge = attributeTable[diceRoller(6,3,PC.knowledge)]
+        PC.presence = attributeTable[diceRoller(6,3,PC.presence)]
+        PC.strength = attributeTable[diceRoller(6,3,PC.strength)]
+        PC.toughness = attributeTable[diceRoller(6,3,PC.toughness)]
+        PC.glitches = diceRoller(PC.glitches)
+        PC.hp = diceRoller(PC.hp,1,PC.toughness)
+        PC.wpn = tableRoller(weaponTable, PC.wpn)
+        PC.arm = tableRoller(armorTable, PC.arm)
+
+
     }
 
+    if (document.getElementById("randomClass").checked == true) {  //random class
+        //let PC = tableRoller(classTable)
+        let PC = classTable[diceRoller(3,1,-1)]
+        console.log(PC)
+
+        return classGenerator(PC)
+
+        PC.agility = attributeTable[diceRoller(6,3,PC.agility)]
+        PC.knowledge = attributeTable[diceRoller(6,3,PC.knowledge)]
+        PC.presence = attributeTable[diceRoller(6,3,PC.presence)]
+        PC.strength = attributeTable[diceRoller(6,3,PC.strength)]
+        PC.toughness = attributeTable[diceRoller(6,3,PC.toughness)]
+        PC.glitches = diceRoller(PC.glitches)
+        PC.hp = diceRoller(PC.hp,1,PC.toughness)
+        PC.wpn = tableRoller(weaponTable, PC.wpn)
+        PC.arm = tableRoller(armorTable, PC.arm)
+        if (PC instanceof corpKiller) {
+            console.log('corp')
+            PC.arm = armorTable[diceRoller(4,1,1)]
+        }
+        let ability = tableRoller(PC.abilites)
+        let results = PC.present()
+        return [results, ability] 
+        
+    }
+
+
+}
+//denna ska sedan in i ovan funktion
+function classSelector() {
+
+
+    if (document.getElementById("randomClass").checked == true) {
+        return tableRoller(classTable)
+    }
+    else {
+        //loop through classSelectorDIV and get the CHECKED one
+        let boxes = Array.from(document.getElementById('classPicker').getElementsByTagName('input'))
+        for(let c = 0; c < boxes.length; c++) {
+            if (boxes[c].checked) return classTable[c]
+        }
+       
+    }
+}
+
+function classGenerator(PC) {
+
+    PC.agility = attributeTable[diceRoller(6,3,PC.agility)]
+    PC.knowledge = attributeTable[diceRoller(6,3,PC.knowledge)]
+    PC.presence = attributeTable[diceRoller(6,3,PC.presence)]
+    PC.strength = attributeTable[diceRoller(6,3,PC.strength)]
+    PC.toughness = attributeTable[diceRoller(6,3,PC.toughness)]
+    PC.glitches = diceRoller(PC.glitches)
+    PC.hp = diceRoller(PC.hp,1,PC.toughness)
+    PC.wpn = tableRoller(weaponTable, PC.wpn)
+    PC.arm = tableRoller(armorTable, PC.arm)
+    if (PC instanceof corpKiller) {
+        console.log('corp')
+        PC.arm = armorTable[diceRoller(4,1,1)]
+    }
+    if (PC instanceof slasher) {
+        PC.special = tableRoller[cyberTable, 12]
+    }
+    let ability = tableRoller(PC.abilites)
+    return PC.present(ability)
+    
 }

@@ -1,7 +1,7 @@
 import { characterGenerator, gearGenerator } from "./js/generator.js";
 
 //need to read the DOM a bit here
-
+document.getElementById("classless").checked = true
 let statOutput = document.getElementById("statsOutput")
 let gearOutput = document.getElementById('gearOutput')
 let gearButton = document.getElementById('gearButton')
@@ -23,14 +23,17 @@ gearButton.onclick = function(){
 
 document.getElementById("classless").addEventListener("click", () => {
     document.getElementById("statSelector").hidden = false
+    document.getElementById('classPicker').hidden = true
 })
 
 document.getElementById("randomClass").addEventListener("click", () => {
     document.getElementById("statSelector").hidden = true
+    document.getElementById('classPicker').hidden = true
 })
 
 document.getElementById("selectClass").addEventListener("click", () => {
     document.getElementById("statSelector").hidden = true
+    document.getElementById('classPicker').hidden = false
 })
 
 //statRoller
@@ -38,6 +41,7 @@ document.getElementById("statRoller").addEventListener("click", () => {
      
     statOutput.innerHTML = ''
     let stats = characterGenerator()
+
     let statKeys = Object.keys(stats)
     let dFrag = document.createDocumentFragment()
     
@@ -48,6 +52,9 @@ document.getElementById("statRoller").addEventListener("click", () => {
         li.textContent += statKeys[c] += stats[statKeys[c]]
         dFrag.appendChild(li)
     } 
+    //let li = document.createElement('li')
+    //li.textContent = 'You also begin with : ' + ability
+    //dFrag.appendChild(li)
     statOutput.appendChild(dFrag)
     document.getElementById("statRoller").disabled = true
     
@@ -55,8 +62,9 @@ document.getElementById("statRoller").addEventListener("click", () => {
 
 //reset button, etc
 document.getElementById("resetButton").addEventListener("click", () => {
-    gearButton.disabled = false
-    document.getElementById("statRoller").disabled = true   
-    statOutput.innerHTML = ''
-    gearOutput.innerHTML = ''
+    location.reload()
+    //gearButton.disabled = false
+    //document.getElementById("statRoller").disabled = true   
+    //statOutput.innerHTML = ''
+    //gearOutput.innerHTML = ''
 } )
