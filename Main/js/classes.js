@@ -31,7 +31,7 @@ export class playerClass {
         }
 
         if (ability) {
-            stats['Class ability: '] = ability
+            stats[this.tag] = ability
         }
         if (special) {
             stats['Special: '] = special
@@ -52,6 +52,7 @@ export class nanomancer extends playerClass{
         this.wpn = 6
         this.arm = 2
         this.hp = 4
+
         this.abilites = [
             "A strange leaf-looking knife.Deals d4 damage, and victims have to test Toughness or bleed 1 HP for d6 rounds." ,
             "Milkwhite eyes that see through lies. Once per day, Once per day, when you believe you've been when you believe you've been lied to, test Presence DR8. lied to, test Presence DR8. On a success, you can tell whenever the target lies for the rest of the day",
@@ -60,6 +61,8 @@ export class nanomancer extends playerClass{
             "An elongated, pointed and semi-translucent skull. Your brain shines underneath, emitting light like that of a candle.",
             "Scales cover most of your body. Any roll to resist cold, heat or radiation is -4DR"
         ]
+
+        this.tag = "You have also been blessed with: "
     }
 
     
@@ -83,6 +86,7 @@ export class hacker extends playerClass{
             '[tERROR]  Target’s RCD renders subliminal, personalized nightmare imagery that distorts reality. Test Presence DR14 or unable to act for d4 rounds.',
             '[DvG-sling] Deal damage to a cybered target or drone/vehicle/mech based on their size. Dog-sized targets take d6 damage, human d10, car 2d8, and larger targets take 2d12.' 
         ]
+        this.tag = 'You built an App :'
     }
 }
 
@@ -102,6 +106,7 @@ export class corpKiller extends playerClass{
             "Crowd-control air cannon. d6 damage, can hit up to d3 targets close to each other",
             "Incendiary shotgun. d10 damage and test Agility DR12 or flammable materials are ignited for +d6 damage the following round"
         ]
+        this.tag = "You took something from your employer when you left the force: "
     }
 }
 
@@ -119,6 +124,7 @@ export class gearhead extends playerClass{
             "AN ARMORED VAN.Five seats and lined with junk. Has a smuggler’s hatch underneath it all. Once a day, test Knowledge DR8 to find the spare part you need to fix any broken tech",
             "A WALKING WEAPONS PLATFORM. Nigh-indestructible, large enough to ride and janky as hell. Anti-materiel battery (2d10) destroys most walls, doors and vehicles with a shot. Has a 2-in-6 chance of breaking down after firing. Takes d4 hours to repair"
         ]
+        this.tag = 'You pilot: '
     }
 }
 
@@ -139,6 +145,8 @@ export class slasher extends playerClass{
             "Dual logans (d8) that makes that sound when you pop 'em out. Once per fight, you can surprise a vicitm by popping out feet claws as well, attacking at DR8",
             "GodDAMN flail (d8). Spiked. Absolutely medieval. Crumples and shreds enemy armor a tier when you hit for 6+ damage"
         ]
+
+        this.tag = "Your trenchcoat hides most of your: "
     }
 }
 
@@ -159,5 +167,6 @@ export class ganger extends playerClass{
             "CLEANUP. You know how to clean up evidence from a crime scene. Start with two DRNA bomvs and a large bottle of acid",
             "ASSAULTS. You always liked it old school: both hands raised, running straight at the enemy. Whatever weapon you begin with, you start with one for each hand. You can use it to make a second attack each round at DR14"
         ]
+        this.tag = "Your specialty was: "
     }
 }
