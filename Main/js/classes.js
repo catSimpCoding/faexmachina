@@ -33,7 +33,7 @@ export class playerClass {
         if (ability) {
             stats[this.tag] = ability
         }
-        if (special) {
+        if (special != false) {
             stats['Special: '] = special
         }
 

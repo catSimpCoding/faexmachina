@@ -3,25 +3,21 @@ import { corpKiller, playerClass, slasher } from "./classes.js";
 import { attributeTable, cyberTable, weaponTable } from "./tables.js";
 import { gearTable, gearTable2, gearTable3, armorTable, classTable } from "./tables.js";
 
-//need to read some DOM here
 export function gearGenerator() {
     return [ `${tableRoller(gearTable)}` , `${tableRoller(gearTable2)}` , `${tableRoller(gearTable3)}` ]
 }
 
 
 export function characterGenerator() {
-    //look up class/classless
-
-    //Gear roll and presentation, chargen at separate stage?
+   //Behöver skuld, startcreds
 
 
 
     if (document.getElementById("classless").checked == true) { // check for classless (dom.class)
 
         let PC = new playerClass()
-        //document.getElementById('Agility').checked gives us if it is checked
         // document.getElementById('statSelector').getElementsByTagName('input') ger oss hela listan av knappar i statSelector, om .checked = true är knappen tryckt
-        //some logic here to check if more than 2 attributes are checked
+        //Kika om någon försöker fuska och bestraffa personen lika brutalt som skoningslöst
 
         let cheats = 0
         let boxes = Array.from(document.getElementById('statSelector').getElementsByTagName('input'))
@@ -85,7 +81,6 @@ export function characterGenerator() {
     }
 
     if (document.getElementById("randomClass").checked == true) {  //random class
-        //let PC = tableRoller(classTable)
         let PC = classTable[diceRoller(3,1,-1)]
         console.log(PC)
 
@@ -130,6 +125,7 @@ function classSelector() {
 }
 
 function classGenerator(PC) {
+    let special = false
 
     PC.agility = attributeTable[diceRoller(6,3,PC.agility)]
     PC.knowledge = attributeTable[diceRoller(6,3,PC.knowledge)]
@@ -140,14 +136,14 @@ function classGenerator(PC) {
     PC.hp = diceRoller(PC.hp,1,PC.toughness)
     PC.wpn = tableRoller(weaponTable, PC.wpn)
     PC.arm = tableRoller(armorTable, PC.arm)
+    
     if (PC instanceof corpKiller) {
-        console.log('corp')
         PC.arm = armorTable[diceRoller(4,1,1)]
     }
     if (PC instanceof slasher) {
-        PC.special = tableRoller[cyberTable, 12]
+        special = tableRoller[cyberTable, 12]
     }
     let ability = tableRoller(PC.abilites)
-    return PC.present(ability)
+    return PC.present(ability, special)
     
 }
